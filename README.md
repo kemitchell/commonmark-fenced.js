@@ -7,19 +7,25 @@ var markdown = [
   "# H1",
   "",
   "```javascript",
-  "console.log('test')",
+  "console.log('first')",
   "```",
   "",
   "```",
   "No info string",
-  "```"
+  "```",
+  "",
+  "```javascript",
+  "console.log('second')",
+  "```",
 ].join('\n')
 
 var justFenced = [
   "", "", "",
-  "console.log('test')",
+  "console.log('first')",
   "", "", "",
   "No info string",
+  "", "", "",
+  "console.log('second')",
   ""
 ].join('\n')
 
@@ -27,8 +33,10 @@ defence(markdown) // => justFenced
 
 var justJavaScript = [
   "", "", "",
-  "console.log('test')",
-  "", "", "", "", ""
+  "console.log('first')",
+  "", "", "", "", "", "", "",
+  "console.log('second')",
+  "",
 ].join('\n')
 
 defence(markdown, [ 'javascript' ]) // => justJavaScript
@@ -36,7 +44,7 @@ defence(markdown, [ 'javascript' ]) // => justJavaScript
 var justNoInfo = [
   "", "", "", "", "", "", "",
   "No info string",
-  ""
+  "", "", "", "", "",
 ].join('\n')
 
 defence(markdown, [ '' ]) // => justNoInfo
