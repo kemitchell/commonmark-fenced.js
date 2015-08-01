@@ -10,6 +10,13 @@
     "jsmd-tape": "^0.1.5",
     "tape": "^4.0.1"
   },
+  "keywords": [
+    "commonmark",
+    "extract",
+    "literate",
+    "markdown",
+    "testing"
+  ],
   "license": "MIT",
   "repository": "kemitchell/defence.js",
   "scripts": {
