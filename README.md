@@ -1,5 +1,3 @@
-Extract fenced code from CommonMark documents.
-
 ```javascript
 var defence = require('defence')
 
