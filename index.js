@@ -1,3 +1,4 @@
+var EOL = require('os').EOL
 var commonmark = require('commonmark')
 
 function lastLineOf(node) {
@@ -7,7 +8,7 @@ function firstLineOf(node) {
   return node.sourcepos[0][0] }
 
 function newlines(number) {
-  return new Array(number).join("\n") }
+  return new Array(number).join(EOL) }
 
 function chop(string) {
   return string.slice(0, string.length - 1) }
