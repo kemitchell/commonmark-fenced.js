@@ -1,5 +1,5 @@
 {
-  "name": "commonmark-fenced",
+  "name": "defence",
   "description": "extract fenced code from CommonMark documents",
   "version": "0.0.0",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (https://kemitchell.com/)",
@@ -11,8 +11,8 @@
     "tape": "^4.0.1"
   },
   "license": "MIT",
-  "repository": "kemitchell/commonmark-fenced.js",
+  "repository": "kemitchell/defence.js",
   "scripts": {
-    "test": "jsmd-tape README.md | sed 's!commonmark-fenced!./!' | node"
+    "test": "jsmd-tape README.md | sed \"s!'defence'!'./'!\" | node"
   }
 }

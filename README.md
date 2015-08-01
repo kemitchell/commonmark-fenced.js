@@ -1,7 +1,7 @@
 Extract fenced code from CommonMark documents.
 
 ```javascript
-var fenced = require('commonmark-fenced')
+var defence = require('defence')
 
 var markdown = [
   "# H1",
@@ -23,7 +23,7 @@ var justFenced = [
   ""
 ].join('\n')
 
-fenced(markdown) // => justFenced
+defence(markdown) // => justFenced
 
 var justJavaScript = [
   "", "", "",
@@ -31,7 +31,7 @@ var justJavaScript = [
   "", "", "", "", ""
 ].join('\n')
 
-fenced(markdown, [ 'javascript' ]) // => justJavaScript
+defence(markdown, [ 'javascript' ]) // => justJavaScript
 
 var justNoInfo = [
   "", "", "", "", "", "", "",
@@ -39,5 +39,5 @@ var justNoInfo = [
   ""
 ].join('\n')
 
-fenced(markdown, [ '' ]) // => justNoInfo
+defence(markdown, [ '' ]) // => justNoInfo
 ```
