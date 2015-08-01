@@ -14,13 +14,9 @@ var markdown = [
 ].join('\n')
 
 var justFenced = [
-  "",
-  "",
-  "",
+  "", "", "",
   "console.log('test')",
-  "",
-  "",
-  "",
+  "", "", "",
   "No info string",
   ""
 ].join('\n')
@@ -28,27 +24,15 @@ var justFenced = [
 fenced(markdown) // => justFenced
 
 var justJavaScript = [
-  "",
-  "",
-  "",
+  "", "", "",
   "console.log('test')",
-  "",
-  "",
-  "",
-  "",
-  ""
+  "", "", "", "", ""
 ].join('\n')
 
 fenced(markdown, [ 'javascript' ]) // => justJavaScript
 
 var justNoInfo = [
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
+  "", "", "", "", "", "", "",
   "No info string",
   ""
 ].join('\n')
