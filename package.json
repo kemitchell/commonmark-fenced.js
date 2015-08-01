@@ -13,6 +13,6 @@
   "license": "MIT",
   "repository": "kemitchell/commonmark-fenced.js",
   "scripts": {
-    "test": "jsmd-tape README.md | node"
+    "test": "jsmd-tape README.md | sed 's!commonmark-fenced!./!' | node"
   }
 }

@@ -1,5 +1,5 @@
 ```javascript
-var fenced = require('./')
+var fenced = require('commonmark-fenced')
 
 var markdown = [
   "# H1",
