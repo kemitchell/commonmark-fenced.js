@@ -1,3 +1,5 @@
+Extract fenced code from CommonMark documents.
+
 ```javascript
 var fenced = require('commonmark-fenced')
 
