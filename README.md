@@ -25,6 +25,8 @@ var justFenced = [
   ""
 ].join('\n')
 
+fenced(markdown) // => justFenced
+
 var justJavaScript = [
   "",
   "",
@@ -36,6 +38,8 @@ var justJavaScript = [
   "",
   ""
 ].join('\n')
+
+fenced(markdown, [ 'javascript' ]) // => justJavaScript
 
 var justNoInfo = [
   "",
@@ -49,7 +53,5 @@ var justNoInfo = [
   ""
 ].join('\n')
 
-fenced(markdown) // => justFenced
-fenced(markdown, [ 'javascript' ]) // => justJavaScript
 fenced(markdown, [ '' ]) // => justNoInfo
 ```
