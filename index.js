@@ -13,7 +13,7 @@ function newlines(number) {
 function chop(string) {
   return string.slice(0, string.length - 1) }
 
-function commonmarkFenced(markup, infoStrings) {
+function defence(markup, infoStrings) {
   var infoMatches = (
     infoStrings === undefined ?
       function infoMatches() {
@@ -51,4 +51,4 @@ function commonmarkFenced(markup, infoStrings) {
     event = walker.next() }
   return output }
 
-module.exports = commonmarkFenced
+module.exports = defence
