@@ -8,22 +8,22 @@ function firstLineOf(node) {
   return node.sourcepos[0][0] }
 
 function newlines(number) {
-  return new Array(number).join(EOL) }
+  return new Array(number + 1).join(EOL) }
 
 function chop(string) {
   return string.slice(0, string.length - 1) }
 
 function commonmarkFenced(markup, infoStrings) {
   var infoMatches = (
-    infoStrings === undefined ? 
+    infoStrings === undefined ?
       function infoMatches() {
         return true } :
       function(info) {
         return infoStrings.some(function(permitted) {
           return permitted === info }) } )
   var walker = new commonmark.Parser().parse(markup).walker()
-  var event, node, isMatchingFencedCode, startLine, endLine
-  var lastBlockBeganOnLine = 0
+  var event, node, startLine
+  var lastBlockEndedOnLine = 1
   var output = ''
   var lastLineOfDocument = 0
   function isMatchingFencedCode(event, node) {
@@ -35,19 +35,20 @@ function commonmarkFenced(markup, infoStrings) {
     return (
       event.entering === false &&
       node.type === 'Document' ) }
-  while (event = walker.next()) {
+  event = walker.next()
+  while (event) {
     node = event.node
     if (isMatchingFencedCode(event, node)) {
       startLine = firstLineOf(node)
-      if (startLine > lastBlockBeganOnLine) {
-        output += newlines((startLine - lastBlockBeganOnLine) + 1) }
-      endLine = lastLineOf(node)
-      lastBlockBeganOnLine = startLine
+      if (startLine > lastBlockEndedOnLine) {
+        output += newlines(( startLine - lastBlockEndedOnLine ) + 1) }
+      lastBlockEndedOnLine = lastLineOf(node) - 1
       output += chop(node.literal) }
     else if (isEndOfDocument(event, node)) {
       lastLineOfDocument = lastLineOf(node)
-      if (lastLineOfDocument > lastBlockBeganOnLine) {
-        output += newlines(lastLineOfDocument - lastBlockBeganOnLine) } } }
+      if (lastLineOfDocument > lastBlockEndedOnLine) {
+        output += newlines(lastLineOfDocument - lastBlockEndedOnLine) } }
+    event = walker.next() }
   return output }
 
 module.exports = commonmarkFenced
