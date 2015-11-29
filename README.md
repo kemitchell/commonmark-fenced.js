@@ -2,6 +2,9 @@
 var defence = require('defence')
 var assert = require('assert')
 
+// Defence takes CommonMark input in and returns a string with the same
+// number of lines, including just the text of code blocks you specify.
+
 var markdown = [
   /*  1 */ "# H1",
   /*  2 */ "",
@@ -32,6 +35,8 @@ var justFenced = [
   /* 12 */ "console.log('second')",
   /* 13 */ "" ].join('\n')
 
+// By default, extract the text of all fenced code blocks.
+
 assert.deepEqual(defence(markdown), justFenced)
 
 var justJavaScript = [
@@ -49,6 +54,8 @@ var justJavaScript = [
   /* 12 */ "console.log('second')",
   /* 13 */ "" ].join('\n')
 
+// You can also specify fenced code blocks with specific info strings.
+
 assert.deepEqual(defence(markdown, [ 'javascript' ]), justJavaScript)
 
 var justNoInfo = [
@@ -65,6 +72,8 @@ var justNoInfo = [
   /* 11 */ "",
   /* 12 */ "",
   /* 13 */ "" ].join('\n')
+
+// The empty string means "fenced code blocks without info strings".
 
 assert.deepEqual(defence(markdown, [ '' ]), justNoInfo)
 ```
