@@ -1,17 +1,7 @@
-var EOL = require('os').EOL
+module.exports = defence
+
 var commonmark = require('commonmark')
-
-function lastLineOf(node) {
-  return node.sourcepos[1][0] }
-
-function firstLineOf(node) {
-  return node.sourcepos[0][0] }
-
-function newlines(number) {
-  return new Array(number + 1).join(EOL) }
-
-function chop(string) {
-  return string.slice(0, string.length - 1) }
+var EOL = require('os').EOL
 
 function defence(markup, infoStrings) {
   var infoMatches = (
@@ -51,4 +41,14 @@ function defence(markup, infoStrings) {
     event = walker.next() }
   return output }
 
-module.exports = defence
+function lastLineOf(node) {
+  return node.sourcepos[1][0] }
+
+function firstLineOf(node) {
+  return node.sourcepos[0][0] }
+
+function newlines(number) {
+  return new Array(number + 1).join(EOL) }
+
+function chop(string) {
+  return string.slice(0, string.length - 1) }
