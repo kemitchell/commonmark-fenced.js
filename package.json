@@ -7,8 +7,7 @@
     "commonmark": "^0.21.0"
   },
   "devDependencies": {
-    "jsmd-tape": "^0.1.5",
-    "tape": "^4.0.1"
+    "replace-require-self": "^1.0.0"
   },
   "keywords": [
     "commonmark",
@@ -20,6 +19,6 @@
   "license": "MIT",
   "repository": "kemitchell/defence.js",
   "scripts": {
-    "test": "jsmd-tape README.md | sed \"s!'defence'!'./'!\" | node"
+    "test": "sed \"1d;x\" README.md | replace-require-self | node"
   }
 }

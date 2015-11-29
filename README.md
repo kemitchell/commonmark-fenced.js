@@ -1,5 +1,6 @@
 ```javascript
 var defence = require('defence')
+var assert = require('assert')
 
 var markdown = [
   "# H1",
@@ -33,7 +34,7 @@ var justFenced = [
   ""
 ].join('\n')
 
-defence(markdown) // => justFenced
+assert.deepEqual(defence(markdown), justFenced)
 
 var justJavaScript = [
   "",
@@ -51,7 +52,10 @@ var justJavaScript = [
   ""
 ].join('\n')
 
-defence(markdown, [ 'javascript' ]) // => justJavaScript
+assert.deepEqual(
+  defence(markdown, [ 'javascript' ]),
+  justJavaScript
+)
 
 var justNoInfo = [
   "",
@@ -69,5 +73,8 @@ var justNoInfo = [
   ""
 ].join('\n')
 
-defence(markdown, [ '' ]) // => justNoInfo
+assert.deepEqual(
+  defence(markdown, [ '' ]),
+  justNoInfo
+)
 ```
