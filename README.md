@@ -3,68 +3,68 @@ var defence = require('defence')
 var assert = require('assert')
 
 var markdown = [
-  "# H1",
-  "",
-  "```javascript",
-  "console.log('first')",
-  "```",
-  "",
-  "```",
-  "No info string",
-  "```",
-  "",
-  "```javascript",
-  "console.log('second')",
-  "```" ].join('\n')
+  /*  1 */ "# H1",
+  /*  2 */ "",
+  /*  3 */ "```javascript",
+  /*  4 */ "console.log('first')",
+  /*  5 */ "```",
+  /*  6 */ "",
+  /*  7 */ "```",
+  /*  8 */ "No info string",
+  /*  9 */ "```",
+  /* 10 */ "",
+  /* 11 */ "```javascript",
+  /* 12 */ "console.log('second')",
+  /* 13 */ "```" ].join('\n')
 
 var justFenced = [
-  "",
-  "",
-  "",
-  "console.log('first')",
-  "",
-  "",
-  "",
-  "No info string",
-  "",
-  "",
-  "",
-  "console.log('second')",
-  "" ].join('\n')
+  /*  1 */ "",
+  /*  2 */ "",
+  /*  3 */ "",
+  /*  4 */ "console.log('first')",
+  /*  5 */ "",
+  /*  6 */ "",
+  /*  7 */ "",
+  /*  8 */ "No info string",
+  /*  9 */ "",
+  /* 10 */ "",
+  /* 11 */ "",
+  /* 12 */ "console.log('second')",
+  /* 13 */ "" ].join('\n')
 
 assert.deepEqual(defence(markdown), justFenced)
 
 var justJavaScript = [
-  "",
-  "",
-  "",
-  "console.log('first')",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "console.log('second')",
-  "" ].join('\n')
+  /*  1 */ "",
+  /*  2 */ "",
+  /*  3 */ "",
+  /*  4 */ "console.log('first')",
+  /*  5 */ "",
+  /*  6 */ "",
+  /*  7 */ "",
+  /*  8 */ "",
+  /*  9 */ "",
+  /* 10 */ "",
+  /* 11 */ "",
+  /* 12 */ "console.log('second')",
+  /* 13 */ "" ].join('\n')
 
 assert.deepEqual(defence(markdown, [ 'javascript' ]), justJavaScript)
 
 var justNoInfo = [
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "No info string",
-  "",
-  "",
-  "",
-  "",
-  "" ].join('\n')
+  /*  1 */ "",
+  /*  2 */ "",
+  /*  3 */ "",
+  /*  4 */ "",
+  /*  5 */ "",
+  /*  6 */ "",
+  /*  7 */ "",
+  /*  8 */ "No info string",
+  /*  9 */ "",
+  /* 10 */ "",
+  /* 11 */ "",
+  /* 12 */ "",
+  /* 13 */ "" ].join('\n')
 
 assert.deepEqual(defence(markdown, [ '' ]), justNoInfo)
 ```
