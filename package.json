@@ -19,6 +19,6 @@
   "license": "MIT",
   "repository": "kemitchell/defence.js",
   "scripts": {
-    "test": "sed \"1d;x\" README.md | replace-require-self | node"
+    "test": "sed '1d;x' README.md | replace-require-self | node"
   }
 }
