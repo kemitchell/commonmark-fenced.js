@@ -15,8 +15,7 @@ var markdown = [
   "",
   "```javascript",
   "console.log('second')",
-  "```"
-].join('\n')
+  "```" ].join('\n')
 
 var justFenced = [
   "",
@@ -31,8 +30,7 @@ var justFenced = [
   "",
   "",
   "console.log('second')",
-  ""
-].join('\n')
+  "" ].join('\n')
 
 assert.deepEqual(defence(markdown), justFenced)
 
@@ -49,13 +47,9 @@ var justJavaScript = [
   "",
   "",
   "console.log('second')",
-  ""
-].join('\n')
+  "" ].join('\n')
 
-assert.deepEqual(
-  defence(markdown, [ 'javascript' ]),
-  justJavaScript
-)
+assert.deepEqual(defence(markdown, [ 'javascript' ]), justJavaScript)
 
 var justNoInfo = [
   "",
@@ -70,11 +64,7 @@ var justNoInfo = [
   "",
   "",
   "",
-  ""
-].join('\n')
+  "" ].join('\n')
 
-assert.deepEqual(
-  defence(markdown, [ '' ]),
-  justNoInfo
-)
+assert.deepEqual(defence(markdown, [ '' ]), justNoInfo)
 ```
