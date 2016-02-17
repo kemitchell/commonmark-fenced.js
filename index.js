@@ -4,39 +4,40 @@ var commonmark = require('commonmark')
 var EOL = require('os').EOL
 
 function defence(markup, infoStrings) {
-  var infoMatches = (
+  var enteringMatchingFencedCode = (
     infoStrings === undefined ?
-      function infoMatches() {
-        return true } :
-      function(info) {
-        return infoStrings.some(function(permitted) {
-          return permitted === info }) } )
+      enteringFencedCodeBlock :
+      function(event, node) {
+        return (
+          enteringFencedCodeBlock(event, node) &&
+          infoStrings.some(function(permitted) {
+            return permitted === node.info }) ) } )
   var walker = new commonmark.Parser().parse(markup).walker()
   var event, node, startLine, endLine
   var lastBlockEndedOnLine = 1
   var output = ''
-  function isMatchingFencedCode(event, node) {
-    return (
-      event.entering === true &&
-      node.type === 'CodeBlock' &&
-      infoMatches(node.info) ) }
   event = walker.next()
   while (event) {
     node = event.node
-    if (isMatchingFencedCode(event, node)) {
+    if (enteringMatchingFencedCode(event, node)) {
       startLine = firstLineOf(node)
       endLine = lastLineOf(node)
       if (startLine > lastBlockEndedOnLine) {
         output += newlines(( startLine - lastBlockEndedOnLine + 1 )) }
       lastBlockEndedOnLine = endLine
       output += node.literal }
-    else if (isEndOfDocument(event, node)) {
+    else if (endingDocument(event, node)) {
       var lastLineOfDocument = lastLineOf(node)
       output += newlines(lastLineOfDocument - lastBlockEndedOnLine + 1) }
     event = walker.next() }
   return output }
 
-function isEndOfDocument(event, node) {
+function enteringFencedCodeBlock(event, node) {
+  return (
+    event.entering === true &&
+    node.type === 'CodeBlock' ) }
+
+function endingDocument(event, node) {
   return (
     event.entering === false &&
     node.type === 'Document' ) }
