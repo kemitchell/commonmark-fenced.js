@@ -1,0 +1,13 @@
+# H1
+
+```javascript
+console.log('first')
+```
+
+```
+No info string
+```
+
+```javascript
+console.log('second')
+```

@@ -7,7 +7,8 @@
     "commonmark": "^0.21.0"
   },
   "devDependencies": {
-    "replace-require-self": "^1.0.0"
+    "glob": "^7.0.0",
+    "tap": "^5.5.0"
   },
   "keywords": [
     "commonmark",
@@ -19,6 +20,6 @@
   "license": "MIT",
   "repository": "kemitchell/defence.js",
   "scripts": {
-    "test": "sed '1d;x' README.md | replace-require-self | node"
+    "test": "tap test.js"
   }
 }
