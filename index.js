@@ -12,34 +12,34 @@ function defence(markup, infoStrings) {
         return infoStrings.some(function(permitted) {
           return permitted === info }) } )
   var walker = new commonmark.Parser().parse(markup).walker()
-  var event, node, startLine
+  var event, node, startLine, endLine
   var lastBlockEndedOnLine = 1
   var output = ''
-  var lastLineOfDocument = 0
   function isMatchingFencedCode(event, node) {
     return (
       event.entering === true &&
       node.type === 'CodeBlock' &&
       infoMatches(node.info) ) }
-  function isEndOfDocument(event, node) {
-    return (
-      event.entering === false &&
-      node.type === 'Document' ) }
   event = walker.next()
   while (event) {
     node = event.node
     if (isMatchingFencedCode(event, node)) {
       startLine = firstLineOf(node)
+      endLine = lastLineOf(node)
       if (startLine > lastBlockEndedOnLine) {
-        output += newlines(( startLine - lastBlockEndedOnLine ) + 1) }
-      lastBlockEndedOnLine = lastLineOf(node) - 1
-      output += chop(node.literal) }
+        output += newlines(( startLine - lastBlockEndedOnLine + 1 )) }
+      lastBlockEndedOnLine = endLine
+      output += node.literal }
     else if (isEndOfDocument(event, node)) {
-      lastLineOfDocument = lastLineOf(node)
-      if (lastLineOfDocument > lastBlockEndedOnLine) {
-        output += newlines(lastLineOfDocument - lastBlockEndedOnLine) } }
+      var lastLineOfDocument = lastLineOf(node)
+      output += newlines(lastLineOfDocument - lastBlockEndedOnLine + 1) }
     event = walker.next() }
   return output }
+
+function isEndOfDocument(event, node) {
+  return (
+    event.entering === false &&
+    node.type === 'Document' ) }
 
 function lastLineOf(node) {
   return node.sourcepos[1][0] }
@@ -49,6 +49,3 @@ function firstLineOf(node) {
 
 function newlines(number) {
   return new Array(number + 1).join(EOL) }
-
-function chop(string) {
-  return string.slice(0, string.length - 1) }

@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "glob": "^7.0.0",
-    "tap": "^5.5.0"
+    "tape": "^4.4.0"
   },
   "keywords": [
     "commonmark",
@@ -20,6 +20,6 @@
   "license": "MIT",
   "repository": "kemitchell/defence.js",
   "scripts": {
-    "test": "tap test.js"
+    "test": "tape test.js"
   }
 }
