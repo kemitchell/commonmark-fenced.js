@@ -35,12 +35,12 @@ function defence(markup, infoStrings) {
 function enteringFencedCodeBlock(event, node) {
   return (
     event.entering === true &&
-    node.type === 'CodeBlock' ) }
+    node.type === 'code_block' ) }
 
 function endingDocument(event, node) {
   return (
     event.entering === false &&
-    node.type === 'Document' ) }
+    node.type === 'document' ) }
 
 function lastLineOf(node) {
   return node.sourcepos[1][0] }
