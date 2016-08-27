@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "glob": "^7.0.0",
+    "standard": "^8.0.0",
     "tape": "^4.4.0"
   },
   "files": [
@@ -23,6 +24,7 @@
   "license": "MIT",
   "repository": "kemitchell/defence.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tape test.js",
+    "lint": "standard"
   }
 }
