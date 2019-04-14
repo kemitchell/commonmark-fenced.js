@@ -28,9 +28,7 @@ function defence (markup, infoStrings) {
     if (enteringMatchingFencedCode(event, node)) {
       startLine = firstLineOf(node)
       endLine = lastLineOf(node)
-      if (startLine > lastBlockEndedOnLine) {
-        output += newlines(startLine - lastBlockEndedOnLine + 1)
-      }
+      output += newlines(startLine - lastBlockEndedOnLine + 1)
       lastBlockEndedOnLine = endLine
       output += node.literal
     } else if (endingDocument(event, node)) {

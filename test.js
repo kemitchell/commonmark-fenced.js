@@ -33,3 +33,51 @@ function readJSON (file) {
     return undefined
   }
 }
+
+tape.test('fence on line 1', function (test) {
+  var input = [
+    '```',
+    'Line 2',
+    '```',
+    'Line 4',
+    'Line 5',
+    '```',
+    'Line 7',
+    '```'
+  ]
+  var result = defence(input.join('\n'), [''])
+  checkNumberedLines(test, result)
+  test.end()
+})
+
+tape.test('numbered lines', function (test) {
+  var input = []
+  for (var counter = 0; counter < 100; counter++) {
+    input.push('Line ' + (counter + 1))
+  }
+  var replaced = [
+    1, 4,
+    20, 22,
+    30, 31,
+    60, 67,
+    80, 99
+  ]
+  replaced.forEach(function (index) {
+    input[index] = '```'
+  })
+  var result = defence(input.join('\n'), [''])
+  checkNumberedLines(test, result)
+  test.end()
+})
+
+function checkNumberedLines (test, result) {
+  result
+    .split('\n')
+    .forEach(function (line, offset) {
+      var match = /^Line (\d+)$/.exec(line)
+      if (match) {
+        var number = parseInt(match[1])
+        test.strictEqual(number, offset + 1, line)
+      }
+    })
+}
