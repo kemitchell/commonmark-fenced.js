@@ -12,7 +12,8 @@ tape.test(function (test) {
         readJSON(path.join(directory, 'infostrings'))
       ),
       read(path.join(directory, 'output')),
-      directory)
+      directory
+    )
   })
   test.end()
 })
