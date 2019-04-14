@@ -6,19 +6,19 @@ var EOL = require('os').EOL
 function defence (markup, infoStrings) {
   var enteringMatchingFencedCode = (
     infoStrings === undefined
-    ? enteringFencedCodeBlock
-    : function (event, node) {
-      return (
-        enteringFencedCodeBlock(event, node) &&
-        infoStrings.some(function (permitted) {
-          return permitted === node.info
-        })
-      )
-    }
+      ? enteringFencedCodeBlock
+      : function (event, node) {
+        return (
+          enteringFencedCodeBlock(event, node) &&
+          infoStrings.some(function (permitted) {
+            return permitted === node.info
+          })
+        )
+      }
   )
   var walker = new commonmark.Parser()
-  .parse(markup)
-  .walker()
+    .parse(markup)
+    .walker()
   var event, node, startLine, endLine
   var lastBlockEndedOnLine = 1
   var output = ''
