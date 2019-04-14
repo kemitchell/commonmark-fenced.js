@@ -4,6 +4,8 @@ var commonmark = require('commonmark')
 var EOL = require('os').EOL
 
 function defence (markup, infoStrings) {
+  // Create a predicate function to identify fenced code blocks to
+  // be preserved in output.
   var enteringMatchingFencedCode = (
     infoStrings === undefined
       ? enteringFencedCodeBlock
@@ -16,27 +18,35 @@ function defence (markup, infoStrings) {
         )
       }
   )
+
+  // Parse the input markup.
   var walker = new commonmark.Parser()
     .parse(markup)
     .walker()
+
+  // Walk the parse tree.
   var event, node, startLine, endLine
   var lastBlockEndedOnLine = 1
   var output = ''
   event = walker.next()
   while (event) {
     node = event.node
+    // Process matching fenced code blocks.
     if (enteringMatchingFencedCode(event, node)) {
       startLine = firstLineOf(node)
       endLine = lastLineOf(node)
       output += newlines(startLine - lastBlockEndedOnLine + 1)
       lastBlockEndedOnLine = endLine
       output += node.literal
+
+    // End the document.
     } else if (endingDocument(event, node)) {
       var lastLineOfDocument = lastLineOf(node)
       output += newlines(lastLineOfDocument - lastBlockEndedOnLine + 1)
     }
     event = walker.next()
   }
+
   return output
 }
 
