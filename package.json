@@ -4,7 +4,7 @@
   "version": "3.0.1",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (https://kemitchell.com/)",
   "dependencies": {
-    "commonmark": "^0.29.0"
+    "commonmark": "^0.30.0"
   },
   "devDependencies": {
     "glob": "^8.0.3",
