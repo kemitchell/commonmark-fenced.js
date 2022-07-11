@@ -1,9 +1,7 @@
-module.exports = defence
-
 var commonmark = require('commonmark')
 var EOL = require('os').EOL
 
-function defence (markup, infoStrings) {
+module.exports = function (markup, infoStrings) {
   // Create a predicate function to identify fenced code blocks to
   // be preserved in output.
   var enteringMatchingFencedCode = (
